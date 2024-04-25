@@ -3,12 +3,10 @@ package main
 import "fmt"
 
 func main() {
-
 	fmt.Println("*** Challenge 1 ***")
 	words := []string{"stress", "sTreSS", "aabbcc", "aAbBcCdD", "aAbBcCdD", "''", "abbca"}
 	for _, word := range words {
 		fmt.Printf("%-9s: %-10s\n", word, firstNonRepeatingLetter(word))
-
 	}
 	fmt.Println()
 	fmt.Println("*** Challenge 2 ***")
