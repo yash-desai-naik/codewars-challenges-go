@@ -42,7 +42,6 @@ func maxPathSumUtil(node *TreeNode, sum int, maxSum *int) {
 	maxPathSumUtil(node.Right, sum, maxSum)
 }
 
-
 /**
 Explanation:
 

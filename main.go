@@ -64,5 +64,6 @@ func main() {
 	root3.Right.Right = &TreeNode_{Value: 5}
 	root3.Right.Right.Left = &TreeNode_{Value: 7}
 
-	fmt.Println(levelOrder(root3)) // Output: [1 8 4 3 5 7]
+	sortedTree := levelOrder(root3)
+	fmt.Println(sortedTree) // Output: [1 8 4 3 5 7]
 }
