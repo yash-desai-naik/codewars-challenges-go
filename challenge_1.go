@@ -40,35 +40,42 @@ func firstNonRepeatingLetter(s string) string {
 
 ### Explanation:
 
-1. **Function Description**:
-   - **Function Name**: `firstNonRepeatingLetter`
-   - **Description**: This function finds and returns the first non-repeating letter in the given string. It returns an empty string if all letters in the string repeat.
-   - **Parameters**:
-     - `s`: The input string to search for the first non-repeating letter.
-   - **Return**:
-     - The first non-repeating letter as a string, or an empty string if all letters repeat.
 
-2. **Algorithm**:
-   - **Step 1: Create a Character Count Map**:
-     - Initialize a map called `charCount` to store the count of each character.
-   - **Step 2: Convert to Lowercase**:
-     - Convert the input string to lowercase using `strings.ToLower()` to make the comparison case-insensitive.
-   - **Step 3: Count Occurrences**:
-     - Iterate through the lowercase string and count the occurrences of each character. Store the counts in the `charCount` map.
-   - **Step 4: Find First Non-Repeating Character**:
-     - Iterate through the original string and check the count of each character in the `charCount` map.
-     - If the count is `1`, return the character. This is the first non-repeating character.
-   - **Step 5: Return Empty String if All Characters Repeat**:
-     - If the loop completes without finding a non-repeating character, return an empty string.
+**Code Block 1: Creating a map to store the count of each character**
+```go
+charCount := make(map[rune]int)
+```
+This line creates a new map (a data structure that stores key-value pairs) called `charCount`. The map will store the count of each character in the input string `s`. The key type of the map is `rune`, which is an alias for `int32` and represents a Unicode code point. The value type of the map is `int`, which represents the count of each character.
 
-3. **Edge Cases Handling**:
-   - This function handles both uppercase and lowercase characters correctly due to the conversion to lowercase.
-   - It correctly identifies the first non-repeating character, even if it's a different case from the one in the input string.
+**Code Block 2: Converting the string to lowercase for case-insensitive comparison**
+```go
+lowercaseString := strings.ToLower(s)
+```
+This line converts the input string `s` to lowercase using the `strings.ToLower` function from the `strings` package. This is done to make the character count comparison case-insensitive.
 
-4. **Complexity**:
-   - The time complexity of this algorithm is O(n), where n is the length of the input string. This is because we iterate through the string only once to count the occurrences and then iterate through it again to find the first non-repeating character.
-   - The space complexity is O(1) because the size of the `charCount` map is independent of the input string size.
+**Code Block 3: Counting occurrences of each character**
+```go
+for _, char := range lowercaseString {
+    charCount[char]++
+}
+```
+This loop iterates over each character in the lowercase string `lowercaseString`. For each character, it increments the count in the `charCount` map using the syntax `charCount[char]++`. This effectively counts the occurrences of each character in the input string.
 
-This code effectively solves the problem by efficiently finding the first non-repeating character in a given string, handling both case-insensitive comparison and returning the correct case for the initial letter.
+**Code Block 4: Finding the first non-repeating character**
+```go
+for _, char := range s {
+    if charCount[unicode.ToLower(char)] == 1 {
+        return string(char)
+    }
+}
+```
+This loop iterates over each character in the original string `s`. For each character, it checks if the count in the `charCount` map is equal to 1, which means it's a non-repeating character. If it is, the function returns the character as a string using the `string(char)` conversion.
+
+**Code Block 5: Returning an empty string if all characters are repeating**
+```go
+return "''"
+```
+If the loop in the previous code block doesn't find a non-repeating character, this line returns an empty string `""`. This is because the input string contains only repeating characters.
+
 
 */
